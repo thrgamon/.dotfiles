@@ -1,0 +1,5 @@
+[user]
+	name = Tom Gamon
+	email = tom@discolabs.com
+[core]
+	editor = nvim
