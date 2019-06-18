@@ -3,3 +3,4 @@
 	email = tom@discolabs.com
 [core]
 	editor = nvim
+	excludesfile = ~/.gitignore_global
