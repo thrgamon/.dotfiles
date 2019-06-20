@@ -1,0 +1,4 @@
+hack() {
+  command ssh "$1.discolabs.com"
+}
+
