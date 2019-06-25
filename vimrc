@@ -500,7 +500,7 @@ let test#strategy = "dispatch"
 
 let docker_repo = $DOCKER_REPO
 if docker_repo == 'true'
-  let g:test#ruby#rspec#executable = "dcra rspec" 
+  let g:test#ruby#rspec#executable = "docker-compose run app rspec" 
 endif
 
 """
