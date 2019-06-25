@@ -496,7 +496,7 @@ nmap <silent> t<C-s> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
 
-let test#strategy = "neovim"
+let test#strategy = "dispatch"
 
 let docker_repo = $DOCKER_REPO
 if docker_repo == 'true'
