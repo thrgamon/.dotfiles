@@ -81,6 +81,11 @@ fi
 
 dc() { if [[ $@ == "up!" ]]; then command bundle install && dc build && dc up; else command  docker-compose "$@"; fi; }
 
+cd!() {
+    mkdir -p -- "$1" &&
+    cd -P -- "$1"
+}
+
 ###
 # Prompt
 ###
