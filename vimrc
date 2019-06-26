@@ -67,6 +67,10 @@ set shell=bash
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" enable mouse scrolling with tmux
+set mouse=a
+
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
