@@ -1,4 +1,5 @@
 bat
+cloc
 ctags
 fswatch
 fzf
