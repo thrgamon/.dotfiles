@@ -526,7 +526,9 @@ nmap - :NERDTreeFind<CR>
 " ALE
 """
 
-let g:ale_fixers = ['eslint', 'prettier', 'rubocop']
+let g:ale_linters_explicit = 1
+let g:ale_linters = { 'javascript': [ 'eslint', 'prettier' ], 'ruby': [ 'rubocop' ] }
+let g:ale_fixers = ['prettier', 'eslint', 'rubocop']
 let g:ale_lint_on_insert_leave = 1
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
