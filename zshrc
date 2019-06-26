@@ -57,7 +57,6 @@ export LANG=en_US.UTF-8
 alias bx='bundle exec'
 alias bi='bundle install'
 alias bu='bundle update'
-alias ngrok='$HOME/ngrok'
 alias til='vim ~/.today-i-learned'
 alias gs='git status'
 alias git_review='ruby ~/projects/git_review.rb -f day -e tom@discolabs.com -p /Users/tomgamon/projects/'
