@@ -545,6 +545,8 @@ let g:ale_lint_on_text_changed = 'never'
 """
 let $FZF_DEFAULT_COMMAND='rg --files --smart-case'
 nnoremap <leader>p :Files<Cr>
+nnoremap <leader>b :Buffers<Cr>
+nnoremap <leader>l :Lines<Cr>
 nnoremap <C-p> :Files<Cr>
 
 """
