@@ -533,8 +533,10 @@ nmap - :NERDTreeFind<CR>
 """
 
 let g:ale_linters_explicit = 1
-let g:ale_linters = { 'javascript': [ 'eslint', 'prettier' ], 'ruby': [ 'rubocop' ] }
-let g:ale_fixers = ['prettier', 'eslint', 'rubocop']
+let g:ale_linters = { 'javascript': [ 'eslint', 'prettier' ], 'ruby': [ 'rubocop' ], 'json': [ 'prettier' ], 'yaml': ['prettier']}
+let g:ale_ruby_rubocop_options = '-P'
+let g:ale_ruby_rubocop_executable = 'bundle'
+let g:ale_fixers = { 'javascript': [ 'prettier', 'eslint' ], 'ruby': [ 'rubocop' ], 'json': [ 'prettier' ] , 'yaml': ['prettier']}
 let g:ale_lint_on_insert_leave = 1
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
