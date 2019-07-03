@@ -64,6 +64,9 @@ nmap <leader>w :w!<cr>
 " Set shell to zsh
 set shell=bash
 
+" Open up vimrc
+command! Vimrc :vs $MYVIMRC
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
