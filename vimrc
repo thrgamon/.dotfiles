@@ -521,6 +521,9 @@ colorscheme gruvbox
 "Close nerdtree if it is the last window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+let NERDTreeMinimalUI=1
+let NERDTreeMinimalMenu=1
+
 "Open nerdtree with ctrl+n
 map <C-n> :NERDTreeToggle<CR>
 
