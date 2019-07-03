@@ -78,6 +78,7 @@ alias note="vim $(date +"~/notes/%d_%m_%Y.md") -c 'cd ~/notes/.'"
 alias vim="nvim"
 alias ovim='vim'
 alias fvim='vim $(ls|fzf)'
+alias fzf='fzf-tmux'
 
 ###
 # Custom Functions
