@@ -555,3 +555,10 @@ nnoremap <C-p> :Files<Cr>
 
 let g:gutentags_file_list_command = 'rg --files'
 let g:gutentags_ctags_exclude = ["*.min.js", "*.min.css", "build", "vendor", ".git", "node_modules", "*.vim/bundle/*"]
+
+"""
+" Airline
+"""
+
+let g:airline#extensions#default#layout = [['a', 'c', 'b'], ['x', 'y', 'z', 'warning']]
+let g:airline_section_y = ''
