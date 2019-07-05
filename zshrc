@@ -78,7 +78,7 @@ alias note="vim $(date +"~/Dropbox/notes/%d_%m_%Y.md") -c 'cd ~/Dropbox/notes/.'
 alias vim="nvim"
 alias ovim='vim'
 alias fvim='vim $(ls|fzf)'
-alias fzf='fzf-tmux'
+alias fzfp='fzf --preview "(bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -500" --bind "ctrl-e:execute(vim {})"'
 
 ###
 # Custom Functions
