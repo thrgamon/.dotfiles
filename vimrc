@@ -470,14 +470,14 @@ endif
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-rails'
-Plug 'morhetz/gruvbox'
-Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
+Plug 'morhetz/gruvbox'
+Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'scrooloose/nerdtree'
@@ -494,7 +494,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 Plug 'radenling/vim-dispatch-neovim'
-Plug 'https://github.com/alok/notational-fzf-vim'
+Plug 'alok/notational-fzf-vim'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
