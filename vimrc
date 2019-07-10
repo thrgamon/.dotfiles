@@ -550,10 +550,6 @@ let g:ale_lint_on_text_changed = 'never'
 " FZF
 """
 let $FZF_DEFAULT_COMMAND='rg --files --smart-case'
-nnoremap <leader>p :Files<Cr>
-nnoremap <leader>b :Buffers<Cr>
-nnoremap <leader>l :Lines<Cr>
-nnoremap <C-p> :Files<Cr>
 
 command! FZFMru call fzf#run({
 \ 'source':  reverse(s:all_files()),
@@ -568,6 +564,12 @@ function! s:all_files()
   \        "v:val !~ 'fugitive:\\|NERD_tree\\|^/tmp/\\|.git/'"),
   \ map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'))
 endfunction
+
+nnoremap <leader>p :Files<Cr>
+nnoremap <leader>b :Buffers<Cr>
+nnoremap <leader>l :Lines<Cr>
+nnoremap <leader>m :FZFMru<Cr>
+nnoremap <C-p> :Files<Cr>
 """
 " Gutentags
 """
