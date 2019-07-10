@@ -57,7 +57,7 @@ export LANG=en_US.UTF-8
 alias bx='bundle exec'
 alias bi='bundle install'
 alias bu='bundle update'
-alias til='vim ~/.today-i-learned'
+alias til='vim ~/Dropbox/notes/today-i-learned.md'
 alias gs='git status'
 alias git_review='ruby ~/projects/git_review.rb -f day -e tom@discolabs.com -p /Users/tomgamon/projects/'
 alias setup_rubocop='curl -s https://gist.githubusercontent.com/zero51/2411f0fc8cdaaace1e8e4844aea3effc/raw/ > .rubocop.yml'
@@ -79,6 +79,8 @@ alias vim="nvim"
 alias ovim='vim'
 alias fvim='vim $(ls|fzf)'
 alias fzfp='fzf --preview "(bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -500" --bind "ctrl-e:execute(vim {})"'
+alias fzfp='fzf --preview "cat {} | head -500" --bind "ctrl-e:execute(vim {})"'
+alias todo='todoist --color --indent --header l -f "##Work"'
 
 ###
 # Custom Functions
