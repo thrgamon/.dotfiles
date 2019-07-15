@@ -81,6 +81,7 @@ alias fvim='vim $(ls|fzf)'
 alias fzfp='fzf --preview "(bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -500" --bind "ctrl-e:execute(vim {})"'
 alias fzfp='fzf --preview "cat {} | head -500" --bind "ctrl-e:execute(vim {})"'
 alias todo='todoist --color --indent --header l -f "##Work"'
+alias ssh=color-ssh
 
 ###
 # Custom Functions
@@ -105,6 +106,21 @@ cd!() {
     mkdir -p -- "$1" &&
     cd -P -- "$1"
 }
+
+ # http://bryangilbert.com/post/etc/term/dynamic-ssh-terminal-background-colors/
+compdef _ssh color-ssh=ssh
+
+color-ssh() {
+    trap "colorterm.sh" INT EXIT
+    if [[ "$*" =~ "prod" ]]; then
+        ~/.dotfiles/colorterm.sh prod
+    elif [[ "$*" =~ "dev" ]]; then
+        ~/.dotfiles/colorterm.sh dev
+    else
+        ~/.dotfiles/colorterm.sh other
+    fi
+    'ssh' $*
+  }
 
 ###
 # Prompt
