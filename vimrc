@@ -449,9 +449,6 @@ if executable('rg')
 set grepprg=rg\ --vimgrep\ --no-heading
 endif
 
-" bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
 " bind \ (backward slash) to grep shortcut
 " command -nargs=+ -complete=file -bar Rg silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Rg<SPACE>
