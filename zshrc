@@ -111,13 +111,13 @@ cd!() {
 compdef _ssh color-ssh=ssh
 
 color-ssh() {
-    trap "colorterm.sh" INT EXIT
+    trap "~/.dotfiles/colorterm.sh" INT EXIT
     if [[ "$*" =~ "prod" ]]; then
         ~/.dotfiles/colorterm.sh prod
-    elif [[ "$*" =~ "dev" ]]; then
+    elif [[ "$*" =~ "staging" ]]; then
         ~/.dotfiles/colorterm.sh dev
     else
-        ~/.dotfiles/colorterm.sh other
+        ~/.dotfiles/colorterm.sh prod
     fi
     'ssh' $*
   }
