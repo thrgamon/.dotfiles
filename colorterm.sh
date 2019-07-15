@@ -7,7 +7,7 @@ if [[ -n "$TMUX" ]]; then
   elif [ "$1" == "other" ]; then
     tmux select-pane -P 'bg=#253320'
   else
-    tmux select-pane -P 'bg=#282c34'
+    tmux select-pane -P 'bg=#282828'
   fi;
 else
   if [ "$1" == "prod" ]; then
@@ -17,6 +17,6 @@ else
   elif [ "$1" == "other" ]; then
     printf '\033]11;#253320\007'
   else
-    printf '\033]11;#282c34\007'
+    printf '\033]11;#282828\007'
   fi
 fi
