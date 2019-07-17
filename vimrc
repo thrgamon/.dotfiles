@@ -494,6 +494,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'alok/notational-fzf-vim'
+Plug 'mhinz/vim-signify'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -604,3 +605,9 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 """
 
 let g:nv_search_paths = ['~/Dropbox/notes']
+
+"""
+" Vim Signify
+"""
+
+let g:signify_vcs_list = ['git']
