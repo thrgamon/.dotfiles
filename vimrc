@@ -61,7 +61,7 @@ nmap <leader>w :w!<cr>
 " command W w !sudo tee % > /dev/null
 
 
-" Set shell to zsh
+" Set shell to bash
 set shell=bash
 
 " Open up vimrc
