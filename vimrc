@@ -472,27 +472,49 @@ endif
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
+" Adds rails specific functionality
 Plug 'tpope/vim-rails'
+" Git commands
 Plug 'tpope/vim-fugitive'
+" Add and change surrounding characters i.e. (), [], ''
 Plug 'tpope/vim-surround'
+" Integration with hub - github cli - :Gbrowse
 Plug 'tpope/vim-rhubarb'
+" Run commands in a variety of ways
 Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
-Plug 'morhetz/gruvbox'
-Plug 'w0rp/ale'
-Plug 'sheerun/vim-polyglot'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'scrooloose/nerdtree'
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'rhysd/vim-textobj-ruby'
-Plug 'kana/vim-textobj-user'
-Plug 'janko/vim-test'
-Plug 'mbbill/undotree'
-Plug 'vim-airline/vim-airline'
+" Dispatch to the inbuilt terminal in nvim and vim 8
 Plug 'radenling/vim-dispatch-neovim'
+" Select a block and comment it out
+Plug 'tpope/vim-commentary'
+" Adds the end after do, the end after def etc.
+Plug 'tpope/vim-endwise'
+" Theme
+Plug 'morhetz/gruvbox'
+" Asynchronous linting and fixing
+Plug 'w0rp/ale'
+" Syntax highlighting for a bunch of languages
+Plug 'sheerun/vim-polyglot'
+" Runs ctags generation automatically
+Plug 'ludovicchabant/vim-gutentags'
+" File Explorer
+Plug 'scrooloose/nerdtree'
+" Bring in FZF installed on the system
+Plug '/usr/local/opt/fzf'
+" Bring FZF into vim
+Plug 'junegunn/fzf.vim'
+" Adds NV commands to replicate notational velocity functionality
 Plug 'alok/notational-fzf-vim'
+" Allows you to select ruby objects (blocks etc.) with ir/ar
+Plug 'rhysd/vim-textobj-ruby'
+" Required for the above
+Plug 'kana/vim-textobj-user'
+" More generic testing commands for a bunch of languages
+Plug 'janko/vim-test'
+" Visual interface to the undoo tree
+Plug 'mbbill/undotree'
+" Status bar
+Plug 'vim-airline/vim-airline'
+" Adds git change markers
 Plug 'mhinz/vim-signify'
 call plug#end()
 
