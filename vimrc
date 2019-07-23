@@ -522,6 +522,11 @@ call plug#end()
 " => Plugin Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """
+" Dispatch
+"""
+
+let g:dispatch_handlers = ['tmux', 'neovim']
+"""
 " Vim Test
 """
 nmap <silent> t<C-n> :TestNearest<CR>
