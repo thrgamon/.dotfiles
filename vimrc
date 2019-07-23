@@ -622,3 +622,10 @@ let g:nv_search_paths = ['~/Dropbox/notes']
 """
 
 let g:signify_vcs_list = ['git']
+
+"""
+" Fugitive
+"""
+nnoremap <leader>gs :Gstatus<Cr>
+nnoremap <leader>gc :Gcommit<Cr>
+nnoremap <leader>gp :Gpush<Cr>
