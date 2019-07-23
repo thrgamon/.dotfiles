@@ -609,6 +609,7 @@ let g:gutentags_ctags_exclude = ["*.min.js", "*.min.css", "build", "vendor", ".g
 
 let g:airline#extensions#default#layout = [['a', 'c', 'b'], ['x', 'y', 'z', 'warning']]
 let g:airline_section_y = ''
+let g:airline#extensions#branch#displayed_head_limit = 30
 
 """
 " Notational Velocity
