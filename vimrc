@@ -491,10 +491,6 @@ Plug 'kana/vim-textobj-user'
 Plug 'janko/vim-test'
 Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'alok/notational-fzf-vim'
 Plug 'mhinz/vim-signify'
@@ -586,22 +582,6 @@ let g:gutentags_ctags_exclude = ["*.min.js", "*.min.css", "build", "vendor", ".g
 
 let g:airline#extensions#default#layout = [['a', 'c', 'b'], ['x', 'y', 'z', 'warning']]
 let g:airline_section_y = ''
-
-"""
-" Language Client - neovim
-"""
-" Required for operations modifying multiple buffers like rename.
-set hidden
-
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['/usr/local/bin/pyls'],
-    \ 'ruby': ['~/.asdf/shims/solargraph', 'stdio'],
-    \ }
-
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 
 """
 " Notational Velocity
