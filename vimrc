@@ -58,6 +58,7 @@ let mapleader = ","
 
 " Fast saving
 nmap <leader>w :w!<cr>
+nmap <leader>wq :wq<cr>
 
 " :W sudo saves the file 
 " (useful for handling the permission-denied error)
@@ -380,12 +381,6 @@ map <leader>s? z=
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
-" Quickly open a buffer for scribble
-map <leader>q :e ~/buffer<cr>
-
-" Quickly open a markdown buffer for scribble
-map <leader>x :e ~/buffer.md<cr>
-
 " Toggle paste mode on and off
 " map <leader>pp :setlocal paste!<cr>
 
@@ -529,11 +524,11 @@ let g:dispatch_handlers = ['tmux', 'neovim']
 """
 " Vim Test
 """
-nmap <silent> t<C-n> :TestNearest<CR>
-nmap <silent> t<C-f> :TestFile<CR>
-nmap <silent> t<C-s> :TestSuite<CR>
-nmap <silent> t<C-l> :TestLast<CR>
-nmap <silent> t<C-g> :TestVisit<CR>
+nnoremap <leader>tn :TestNearest<Cr>
+nnoremap <leader>tf :TestFile<Cr>
+nnoremap <leader>ts :TestSuite<Cr>
+nnoremap <leader>tl :TestLast<Cr>
+nnoremap <leader>tv :TestVisit<Cr>
 
 let test#strategy = "dispatch"
 
