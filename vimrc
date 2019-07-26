@@ -511,6 +511,8 @@ Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
 " Adds git change markers
 Plug 'mhinz/vim-signify'
+" Deep learning tab completetion
+Plug 'zxqfl/tabnine-vim'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
