@@ -566,25 +566,21 @@ let g:ale_lint_on_text_changed = 'never'
 """
 let $FZF_DEFAULT_COMMAND='rg --files --smart-case'
 
-command! FZFMru call fzf#run({
-\ 'source':  reverse(s:all_files()),
-\ 'sink':    'edit',
-\ 'dir':      '.',
-\ 'options': '-m -x +s',
-\ 'down':    '40%' })
-
-function! s:all_files()
-  return extend(
-  \ filter(copy(v:oldfiles),
-  \        "v:val !~ 'fugitive:\\|NERD_tree\\|^/tmp/\\|.git/'"),
-  \ map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'))
-endfunction
-
-nnoremap <leader>p :Files<Cr>
+nnoremap <leader>p :GitFiles<Cr>
 nnoremap <leader>b :Buffers<Cr>
 nnoremap <leader>l :Lines<Cr>
 nnoremap <leader>m :FZFMru<Cr>
-nnoremap <C-p> :Files<Cr>
+nnoremap <leader>h :History<Cr>
+nnoremap <leader>/ :Helptags<Cr>
+nnoremap <C-p> :GitFiles<Cr>
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
 """
 " Gutentags
 """
