@@ -447,7 +447,6 @@ set grepprg=rg\ --vimgrep\ --no-heading
 endif
 
 " bind \ (backward slash) to grep shortcut
-" command -nargs=+ -complete=file -bar Rg silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Rg<SPACE>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins
