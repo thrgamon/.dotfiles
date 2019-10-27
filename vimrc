@@ -494,8 +494,6 @@ Plug 'scrooloose/nerdtree'
 Plug '/usr/local/opt/fzf'
 " Bring FZF into vim
 Plug 'junegunn/fzf.vim'
-" Adds NV commands to replicate notational velocity functionality
-Plug 'alok/notational-fzf-vim'
 " Allows you to select ruby objects (blocks etc.) with ir/ar
 Plug 'rhysd/vim-textobj-ruby'
 " Required for the above
@@ -596,11 +594,6 @@ let g:airline#extensions#default#layout = [['a', 'c', 'b'], ['x', 'y', 'z', 'war
 let g:airline_section_y = ''
 let g:airline#extensions#branch#displayed_head_limit = 30
 
-"""
-" Notational Velocity
-"""
-
-let g:nv_search_paths = ['~/Dropbox/notes']
 
 """
 " Vim Signify
