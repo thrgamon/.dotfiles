@@ -486,8 +486,6 @@ Plug 'tpope/vim-endwise'
 Plug 'w0rp/ale'
 " Syntax highlighting for a bunch of languages
 Plug 'sheerun/vim-polyglot'
-" Runs ctags generation automatically
-Plug 'ludovicchabant/vim-gutentags'
 " File Explorer
 Plug 'scrooloose/nerdtree'
 " Bring in FZF installed on the system
