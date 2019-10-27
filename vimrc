@@ -482,8 +482,6 @@ Plug 'radenling/vim-dispatch-neovim'
 Plug 'tpope/vim-commentary'
 " Adds the end after do, the end after def etc.
 Plug 'tpope/vim-endwise'
-" Theme
-Plug 'morhetz/gruvbox'
 " Asynchronous linting and fixing
 Plug 'w0rp/ale'
 " Syntax highlighting for a bunch of languages
@@ -537,11 +535,6 @@ let docker_repo = $DOCKER_REPO
 if docker_repo == 'true'
   let g:test#ruby#rspec#executable = "docker-compose run app rspec" 
 endif
-
-"""
-" Gruvbox 
-"""
-colorscheme gruvbox
 
 """
 "Nerdtree
