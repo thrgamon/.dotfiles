@@ -152,13 +152,9 @@ endif
 " Add a bit extra margin to the left
 set foldcolumn=1
 
-" Set a block cursor
-set guicursor=n-v-c:block-Cursor
-
-" Switch between block and line cursor in iterm
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" Sets cursor styles
+" Block in normal, line in insert, underline in replace
+set guicursor=n-v-c-sm:block,i-ci-ve:ver25-Cursor,r-cr-o:hor20
 
 " Set hybrid  line number to appear
 set number relativenumber 
