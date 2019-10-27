@@ -472,6 +472,10 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-rhubarb'
 " Run commands in a variety of ways
 Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-unimpaired'
 " Dispatch to the inbuilt terminal in nvim and vim 8
 Plug 'radenling/vim-dispatch-neovim'
 " Select a block and comment it out
