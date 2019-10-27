@@ -43,6 +43,7 @@ source ~/zsh/zsh-git-prompt/zshrc.sh
 ###
 # Set Environment Variables
 ###
+export EDITOR='nvim'
 export DOKKU_PORT='10044'
 export TERM="xterm-256color"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
