@@ -69,7 +69,7 @@ nmap <leader>wq :wq<cr>
 set shell=bash
 
 " Open up vimrc
-command! Vimrc :vs $MYVIMRC
+command! Vimrc :vs ~/.vimrc 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
