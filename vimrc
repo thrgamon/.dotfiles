@@ -517,11 +517,6 @@ call plug#end()
 " => Plugin Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """
-" Dispatch
-"""
-
-let g:dispatch_handlers = ['tmux', 'neovim']
-"""
 " Vim Test
 """
 nnoremap <leader>tn :TestNearest<Cr>
@@ -555,10 +550,11 @@ nmap - :NERDTreeFind<CR>
 """
 
 let g:ale_linters_explicit = 1
-let g:ale_linters = { 'javascript': [ 'eslint', 'prettier' ], 'ruby': [ 'rubocop', 'solargraph'], 'json': [ 'prettier' ], 'yaml': ['prettier'], 'rust': ['rustfmt']}
+let g:ale_linters = { 'javascript': [ 'eslint', 'prettier' ], 'ruby': [ 'standardrb'], 'json': [ 'prettier' ], 'yaml': ['prettier'], 'rust': ['rustfmt']}
 let g:ale_ruby_rubocop_options = '-P'
 let g:ale_ruby_rubocop_executable = 'bundle'
-let g:ale_fixers = { 'javascript': [ 'prettier', 'eslint' ], 'ruby': [ 'rubocop' ], 'json': [ 'prettier' ] , 'yaml': ['prettier'], 'xml': ['xmllint'], 'rust': ['rustfmt']}
+let g:ale_ruby_standardrb_executable = 'bundle'
+let g:ale_fixers = { 'javascript': [ 'prettier', 'eslint' ], 'ruby': [ 'standardrb'], 'json': [ 'prettier' ] , 'yaml': ['prettier'], 'xml': ['xmllint'], 'rust': ['rustfmt']}
 let g:ale_lint_on_insert_leave = 1
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
@@ -566,14 +562,6 @@ let g:ale_lint_on_text_changed = 'never'
 " FZF
 """
 let $FZF_DEFAULT_COMMAND='rg --files --smart-case'
-
-nnoremap <leader>p :GitFiles<Cr>
-nnoremap <leader>b :Buffers<Cr>
-nnoremap <leader>l :Lines<Cr>
-nnoremap <leader>m :FZFMru<Cr>
-nnoremap <leader>h :History<Cr>
-nnoremap <leader>/ :Helptags<Cr>
-nnoremap <C-p> :GitFiles<Cr>
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
@@ -607,6 +595,65 @@ let g:signify_vcs_list = ['git']
 """
 " Fugitive
 """
-nnoremap <leader>gs :Gstatus<Cr>
+function! ToggleGstatus()
+    if buflisted(bufname('.git/index'))
+        bd .git/index
+    else
+        Gstatus
+    endif
+endfunction
+
+command! ToggleGstatus :call ToggleGstatus()
+
+nnoremap <leader>gs :ToggleGstatus<Cr>
 nnoremap <leader>gc :Gcommit<Cr>
 nnoremap <leader>gp :Gpush<Cr>
+
+"""
+" COC
+"""
+let g:coc_global_extensions = ['coc-solargraph']
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+"""
+" Gruvbox
+"""
+
+colorscheme gruvbox
+
+"""
+" Keymaps
+"""
+
+nnoremap <leader>l :Dispatch! bundle exec standardrb --fix % <Cr>
+
