@@ -479,14 +479,10 @@ Plug 'tpope/vim-rake'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-unimpaired'
-" Dispatch to the inbuilt terminal in nvim and vim 8
-Plug 'radenling/vim-dispatch-neovim'
 " Select a block and comment it out
 Plug 'tpope/vim-commentary'
 " Adds the end after do, the end after def etc.
 Plug 'tpope/vim-endwise'
-" Asynchronous linting and fixing
-Plug 'w0rp/ale'
 " Syntax highlighting for a bunch of languages
 Plug 'sheerun/vim-polyglot'
 " File Explorer
@@ -495,18 +491,26 @@ Plug 'scrooloose/nerdtree'
 Plug '/usr/local/opt/fzf'
 " Bring FZF into vim
 Plug 'junegunn/fzf.vim'
-" Allows you to select ruby objects (blocks etc.) with ir/ar
-Plug 'rhysd/vim-textobj-ruby'
-" Required for the above
-Plug 'kana/vim-textobj-user'
 " More generic testing commands for a bunch of languages
 Plug 'janko/vim-test'
 " Visual interface to the undoo tree
 Plug 'mbbill/undotree'
 " Status bar
 Plug 'vim-airline/vim-airline'
-" Adds git change markers
-Plug 'mhinz/vim-signify'
+" Open the buffer in Marked
+Plug 'itspriddle/vim-marked'
+" Autocompletion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Theme
+Plug 'morhetz/gruvbox'
+" Show git gutter
+Plug 'mhinz/vim-signify', { 'on':  'SignifyToggle' }
+" Allow shortcuts to use ruby objects
+Plug 'kana/vim-textobj-user'
+Plug 'nelstrom/vim-textobj-rubyblock'
+
+" Allow shortcuts to run commands in a tmux split pane
+Plug 'benmills/vimux'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
