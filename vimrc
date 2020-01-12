@@ -353,7 +353,7 @@ if has("autocmd")
   autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
 
-inoremap jj <Esc>
+inoremap kj <Esc>
 
 " // will copy the selcted text to search
 vnoremap // y/\V<C-R>"
