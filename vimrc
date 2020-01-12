@@ -570,6 +570,19 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
+command! -bang -nargs=* Factories call fzf#vim#files('spec/factories')
+command! -bang -nargs=* Models call fzf#vim#files('app/models')
+command! -bang -nargs=* Specs call fzf#vim#files('spec')
+
+nnoremap <leader>p :Files<Cr>
+nnoremap <leader>b :Buffers<Cr>
+nnoremap <leader>m :Models<Cr>
+nnoremap <leader>h :History<Cr>
+nnoremap <leader>/ :Helptags<Cr>
+nnoremap <leader>f :Factories<Cr>
+nnoremap <leader>s :Specs<Cr>
+nnoremap <C-p> :Files<Cr>
+
 """
 " Gutentags
 """
