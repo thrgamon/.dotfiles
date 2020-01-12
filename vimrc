@@ -68,6 +68,8 @@ nmap <leader>wq :wq<cr>
 " Set shell to bash
 set shell=zsh
 
+" Remap esc to escape terminal input
+tnoremap <Esc> <C-\><C-n>
 
 " Open up vimrc
 command! Vimrc :vs ~/.vimrc 
