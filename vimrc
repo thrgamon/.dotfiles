@@ -160,8 +160,8 @@ set foldcolumn=1
 set guicursor=n-v-c-sm:block,i-ci-ve:ver25-Cursor,r-cr-o:hor20
 
 " Set hybrid  line number to appear
-set number relativenumber 
-set nu rnu
+set number  
+set nu
 
 set cursorline
 
