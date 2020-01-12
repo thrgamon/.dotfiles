@@ -66,7 +66,8 @@ nmap <leader>wq :wq<cr>
 
 
 " Set shell to bash
-set shell=bash
+set shell=zsh
+
 
 " Open up vimrc
 command! Vimrc :vs ~/.vimrc 
