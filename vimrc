@@ -69,7 +69,7 @@ nmap <leader>wq :wq<cr>
 set shell=zsh
 
 " Remap esc to escape terminal input
-tnoremap <Esc> <C-\><C-n>
+tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 
 " Open up vimrc
 command! Vimrc :vs ~/.vimrc 
