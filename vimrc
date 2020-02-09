@@ -647,6 +647,24 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')"
+
 """
 " Gruvbox
 """
