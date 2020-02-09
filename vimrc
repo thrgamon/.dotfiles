@@ -568,7 +568,7 @@ nnoremap <leader>b :Buffers<Cr>
 nnoremap <leader>m :Models<Cr>
 nnoremap <leader>h :History<Cr>
 nnoremap <leader>/ :Helptags<Cr>
-nnoremap <leader>f :Factories<Cr>
+nnoremap <leader>ff :Factories<Cr>
 nnoremap <leader>s :Specs<Cr>
 nnoremap <C-p> :Files<Cr>
 
