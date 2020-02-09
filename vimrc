@@ -546,19 +546,7 @@ let NERDTreeMinimalMenu=1
 map <C-n> :NERDTreeToggle<CR>
 
 nmap - :NERDTreeFind<CR>
-"""
-" ALE
-"""
 
-let g:ale_linters_explicit = 1
-let g:ale_linters = { 'javascript': [ 'eslint', 'prettier' ], 'ruby': [ 'standardrb'], 'json': [ 'prettier' ], 'yaml': ['prettier'], 'rust': ['rustfmt']}
-let g:ale_ruby_rubocop_options = '-P'
-let g:ale_ruby_rubocop_executable = 'bundle'
-let g:ale_ruby_standardrb_executable = 'bundle'
-let g:ale_fixers = { 'javascript': [ 'prettier', 'eslint' ], 'ruby': [ 'standardrb'], 'json': [ 'prettier' ] , 'yaml': ['prettier'], 'xml': ['xmllint'], 'rust': ['rustfmt']}
-let g:ale_lint_on_insert_leave = 1
-let g:ale_fix_on_save = 1
-let g:ale_lint_on_text_changed = 'never'
 """
 " FZF
 """
