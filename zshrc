@@ -77,6 +77,7 @@ alias dcra='docker-compose run --rm app'
 alias dcrw='docker-compose run --rm web'
 alias ngrokc='ngrok `< .ngrok-config`'
 alias zc='vim ~/.zshrc'
+alias szc='source ~/.zshrc'
 alias zcl='vim ~/.zsh-local'
 alias vc='vim ~/.vimrc'
 alias note="vim $(date +"~/Dropbox/notes/%d_%m_%Y.md") -c 'cd ~/Dropbox/notes/.'" 
