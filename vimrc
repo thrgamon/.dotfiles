@@ -356,9 +356,6 @@ endif
 
 inoremap kj <Esc>
 
-" // will copy the selcted text to search
-vnoremap // y/\V<C-R>"
-
 " Don't jump to next match with asterix
 nnoremap * *``
 nnoremap * :keepjumps normal! mi*`i<CR>
