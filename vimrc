@@ -523,11 +523,14 @@ nnoremap <leader>ts :TestSuite<Cr>
 nnoremap <leader>tl :TestLast<Cr>
 nnoremap <leader>tv :TestVisit<Cr>
 
-let test#strategy = "dispatch"
+let test#strategy = "vimux"
+
+let g:test#ruby#rspec#executable = "bin/rspec" 
+let g:test#javascript#jest#executable = "yarn test" 
 
 let docker_repo = $DOCKER_REPO
 if docker_repo == 'true'
-  let g:test#ruby#rspec#executable = "docker-compose run app rspec" 
+  let g:test#ruby#rspec#executable = "docker-compose run app bin/rspec" 
 endif
 
 """
