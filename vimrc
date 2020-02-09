@@ -676,4 +676,5 @@ colorscheme gruvbox
 """
 
 nnoremap <leader>l :Dispatch! bundle exec standardrb --fix % <Cr>
+nnoremap <leader><leader> :VimuxPromptCommand <Cr>
 
