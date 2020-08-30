@@ -71,9 +71,6 @@ set shell=zsh
 " Remap esc to escape terminal input
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 
-" Open up vimrc
-command! Vimrc :vs ~/.vimrc 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -678,6 +675,21 @@ augroup END
 " Keymaps
 """
 
-nnoremap <leader>l :Dispatch! bundle exec standardrb --fix % <Cr>
-nnoremap <leader><leader> :VimuxPromptCommand <Cr>
+nnoremap <leader>l :Run bundle exec standardrb --fix % <Cr>
+nnoremap <leader>c :silent ! echo % \| pbcopy <Cr>
+nnoremap <leader>1 :set relativenumber!<Cr>
+nnoremap <leader>ev :vsplit ~/.vimrc<Cr>
+nnoremap <leader>sv :source ~/.vimrc<Cr>
 
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+"""
+" Custom Commands
+"""
+command! -nargs=0 DumpSchema Run bundle exec rails graphql:dump_schema
+command! -nargs=0 RunEditedSpecs Run bundle exec bin/rails $(git diff --name-only --diff-filter=d `git merge-base origin/master HEAD` | grep -E ".*(spec.rb)$")
+command! -nargs=0 LintEditedFiles Run bundle exec standardrb --fix $(git diff --name-only --diff-filter=d `git merge-base origin/master HEAD` | grep -E "\.rb$" | grep -v "^db")
+command! -nargs=* ST split | terminal <args>
+command! -nargs=* VT vsplit | terminal <args>
+command! -nargs=* Run AsyncRun -mode=term -pos=bottom -rows=10 -focus=0 <args>
+command! -nargs=0 OOOSpecs Run bundle exec bin/rspec spec/one_on_ones spec/graphql/integration/one_on_ones spec/graphql/integration/one_on_ones_spec.rb spec/graphql/integration/mutations/one_on_ones spec/graphql/integration/subscriptions
+command! -nargs=0 PR ! gh pr view --web
