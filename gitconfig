@@ -11,3 +11,8 @@
 	process = git-lfs filter-process
 [push]
 	default = current
+[alias]
+  stat = "!git diff --stat `git merge-base origin/master HEAD`"
+  files = "!git diff --name-only --diff-filter=d `git merge-base origin/master HEAD`"
+[pull]
+	ff = only
