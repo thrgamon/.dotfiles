@@ -137,7 +137,7 @@ rollover() {
 # Prompt
 ###
 
-precmd() { detect-docker; print -rP "$(show-ship)$(git_super_status)" }
+precmd() { print -rP "$(git_super_status)" }
 PROMPT='> %B%2~%b $ '
 
 ###
