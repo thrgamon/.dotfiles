@@ -17,7 +17,7 @@ cdpath=(. $HOME $HOME/projects)
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 HIST_STAMPS="dd.mm.yyyy"
-plugins=(asdf git-open zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search)
+plugins=(git-open zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search)
 source $ZSH/oh-my-zsh.sh
 
 GIT_PROMPT_EXECUTABLE="haskell"
