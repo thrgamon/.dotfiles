@@ -65,7 +65,7 @@ nmap <leader>wq :wq<cr>
 " command W w !sudo tee % > /dev/null
 
 
-" Set shell to bash
+" Set shell to zsh
 set shell=zsh
 
 " Remap esc to escape terminal input
