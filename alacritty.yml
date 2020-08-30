@@ -68,15 +68,6 @@ scrolling:
   # scrollback is enabled (history > 0).
   multiplier: 3
 
-  # Faux Scrolling
-  #
-  # The `faux_multiplier` setting controls the number of lines the terminal
-  # should scroll when the alternate screen buffer is active. This is used
-  # to allow mouse scrolling for applications like `man`.
-  #
-  # Specifying `0` will disable faux scrolling.
-  faux_multiplier: 3
-
   # Scroll to the bottom when new text is written to the terminal.
   auto_scroll: false
 
@@ -91,15 +82,8 @@ tabspaces: 8
 
 # Font configuration (changes require restart)
 font:
-  # Normal (roman) font face
-  #normal:
-  # Font family
-  #
-  # Default:
-  #   - (macOS) Menlo
-  #   - (Linux) monospace
-  #   - (Windows) Consolas
-  #family: monospace
+  normal:
+    family: Source Code Pro
 
   # The `style` can be specified to pick a specific face.
   #style: Regular
@@ -174,7 +158,7 @@ debug:
   #   - Info
   #   - Debug
   #   - Trace
-  log_level: Warn
+  log_level: None
 
   # Print all received window events.
   print_events: false
@@ -301,7 +285,7 @@ selection:
   semantic_escape_chars: ',│`|:"'' ()[]{}<>'
 
   # When set to `true`, selected text will be copied to the primary clipboard.
-  save_to_clipboard: true
+  save_to_clipboard: false
 
 # Allow terminal applications to change Alacritty's window title.
 dynamic_title: true
@@ -557,3 +541,4 @@ key_bindings:
   - { key: F11, mods: Super, chars: "\x1b[23;3~" }
   - { key: F12, mods: Super, chars: "\x1b[24;3~" }
   - { key: NumpadEnter, chars: "\n" }
+  - { key: A, mods: Alt, chars: "\x1ba"}

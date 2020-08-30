@@ -34,7 +34,7 @@
 set history=500
 
 " Copy to system clipboard
-" set clipboard=unnamed
+set clipboard+=unnamedplus
 
 " Enable filetype plugins
 filetype plugin on
@@ -65,14 +65,11 @@ nmap <leader>wq :wq<cr>
 " command W w !sudo tee % > /dev/null
 
 
-" Set shell to bash
+" Set shell to zsh
 set shell=zsh
 
 " Remap esc to escape terminal input
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
-
-" Open up vimrc
-command! Vimrc :vs ~/.vimrc 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -463,6 +460,8 @@ endif
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
+" Theme
+Plug 'morhetz/gruvbox'
 " Adds rails specific functionality
 Plug 'tpope/vim-rails'
 " Git commands
@@ -471,8 +470,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 " Integration with hub - github cli - :Gbrowse
 Plug 'tpope/vim-rhubarb'
-" Run commands in a variety of ways
-Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-projectionist'
@@ -491,24 +488,19 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 " More generic testing commands for a bunch of languages
 Plug 'janko/vim-test'
-" Visual interface to the undoo tree
-Plug 'mbbill/undotree'
-" Status bar
-Plug 'vim-airline/vim-airline'
+" Visual interface to the undo tree
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 " Open the buffer in Marked
 Plug 'itspriddle/vim-marked'
 " Autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Theme
-Plug 'morhetz/gruvbox'
 " Show git gutter
-Plug 'mhinz/vim-signify', { 'on':  'SignifyToggle' }
+Plug 'airblade/vim-gitgutter', { 'on':  'GitGutterToggle' }
 " Allow shortcuts to use ruby objects
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'skywind3000/asyncrun.vim'
 
-" Allow shortcuts to run commands in a tmux split pane
-Plug 'benmills/vimux'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -523,7 +515,15 @@ nnoremap <leader>ts :TestSuite<Cr>
 nnoremap <leader>tl :TestLast<Cr>
 nnoremap <leader>tv :TestVisit<Cr>
 
-let test#strategy = "vimux"
+function! AsyncSplit(cmd) abort
+  let g:test#strategy#cmd = a:cmd
+  call test#strategy#asyncrun_setup_unlet_global_autocmd()
+  execute 'AsyncRun -mode=term -pos=bottom -rows=10 -focus=0 -post=echo\ eval("g:asyncrun_code\ ?\"Failure\":\"Success\"").":"'
+          \ .'\ substitute(g:test\#strategy\#cmd,\ "\\",\ "",\ "") '.a:cmd
+endfunction
+
+let g:test#custom_strategies = {'async_split': function('AsyncSplit')}
+let g:test#strategy = 'async_split'
 
 let g:test#ruby#rspec#executable = "bin/rspec" 
 let g:test#javascript#jest#executable = "yarn test" 
@@ -541,8 +541,10 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 let NERDTreeMinimalUI=1
 let NERDTreeMinimalMenu=1
+let NERDTreeAutoDeleteBuffer=1
+let NERDTreeQuitOnOpen=1
 
-"Open nerdtree with ctrl+n
+" Open nerdtree with ctrl+n
 map <C-n> :NERDTreeToggle<CR>
 
 nmap - :NERDTreeFind<CR>
@@ -562,6 +564,7 @@ command! -bang -nargs=* Rg
 command! -bang -nargs=* Factories call fzf#vim#files('spec/factories')
 command! -bang -nargs=* Models call fzf#vim#files('app/models')
 command! -bang -nargs=* Specs call fzf#vim#files('spec')
+command! -bang EditedFiles call fzf#run(fzf#wrap({ 'source': 'git diff --name-only `git merge-base origin/master HEAD`'}))
 
 nnoremap <leader>p :Files<Cr>
 nnoremap <leader>b :Buffers<Cr>
@@ -571,21 +574,6 @@ nnoremap <leader>/ :Helptags<Cr>
 nnoremap <leader>ff :Factories<Cr>
 nnoremap <leader>s :Specs<Cr>
 nnoremap <C-p> :Files<Cr>
-
-"""
-" Gutentags
-"""
-
-let g:gutentags_file_list_command = 'rg --files'
-let g:gutentags_ctags_exclude = ["*.min.js", "*.min.css", "build", "vendor", ".git", "node_modules", "*.vim/bundle/*"]
-
-"""
-" Airline
-"""
-
-let g:airline#extensions#default#layout = [['a', 'c', 'b'], ['x', 'y', 'z', 'warning']]
-let g:airline_section_y = ''
-let g:airline#extensions#branch#displayed_head_limit = 30
 
 
 """
@@ -608,13 +596,13 @@ endfunction
 command! ToggleGstatus :call ToggleGstatus()
 
 nnoremap <leader>gs :ToggleGstatus<Cr>
-nnoremap <leader>gc :Gcommit<Cr>
 nnoremap <leader>gp :Gpush<Cr>
 
 """
 " COC
 """
 let g:coc_global_extensions = ['coc-solargraph']
+let g:coc_disable_startup_warning = 1
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -672,14 +660,41 @@ command! -nargs=0 Format :call CocAction('format')"
 colorscheme gruvbox
 
 """
+" AsyncRun
+"""
+
+" Make it cooperate with vim-fugitive
+" https://github.com/skywind3000/asyncrun.vim/wiki/Cooperate-with-famous-plugins#fugitive
+command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+
+augroup vimrc
+    autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
+augroup END
+
+"""
 " Keymaps
 """
 
-nnoremap <leader>l :Dispatch! bundle exec standardrb --fix % <Cr>
-nnoremap <leader><leader> :VimuxPromptCommand <Cr>
+nnoremap <leader>l :Run bundle exec standardrb --fix % <Cr>
+nnoremap <leader>c :silent ! echo % \| pbcopy <Cr>
+nnoremap <leader>1 :set relativenumber!<Cr>
+nnoremap <leader>ev :vsplit ~/.vimrc<Cr>
+nnoremap <leader>sv :source ~/.vimrc<Cr>
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 """
 " AutoCommands
 """ 
-
 autocmd VimEnter * echom(system("shuf -n 1 ~/.dotfiles/pragprog.txt \| tr -d '\n'"))
+
+"""
+" Custom Commands
+"""
+command! -nargs=0 DumpSchema Run bundle exec rails graphql:dump_schema
+command! -nargs=0 RunEditedSpecs Run bundle exec bin/rails $(git diff --name-only --diff-filter=d `git merge-base origin/master HEAD` | grep -E ".*(spec.rb)$")
+command! -nargs=0 LintEditedFiles Run bundle exec standardrb --fix $(git diff --name-only --diff-filter=d `git merge-base origin/master HEAD` | grep -E "\.rb$" | grep -v "^db")
+command! -nargs=* ST split | terminal <args>
+command! -nargs=* VT vsplit | terminal <args>
+command! -nargs=* Run AsyncRun -mode=term -pos=bottom -rows=10 -focus=0 <args>
+command! -nargs=0 OOOSpecs Run bundle exec bin/rspec spec/one_on_ones spec/graphql/integration/one_on_ones spec/graphql/integration/one_on_ones_spec.rb spec/graphql/integration/mutations/one_on_ones spec/graphql/integration/subscriptions
+command! -nargs=0 PR ! gh pr view --web

@@ -1,21 +1,5 @@
-# only load completions onces a day
-_zpcompinit_custom() {
-  setopt extendedglob local_options
-  autoload -Uz compinit
-  local zcd=${ZDOTDIR:-$HOME}/.zcompdump
-  local zcdc="$zcd.zwc"
-  # Compile the completion dump to increase startup speed, if dump is newer or doesn't exist,
-  # in the background as this is doesn't affect the current session
-  if [[ -f "$zcd"(#qN.m+1) ]]; then
-        compinit -i -d "$zcd"
-        { rm -f "$zcdc" && zcompile "$zcd" } &!
-  else
-        compinit -C -d "$zcd"
-        { [[ ! -f "$zcdc" || "$zcd" -nt "$zcdc" ]] && rm -f "$zcdc" && zcompile "$zcd" } &!
-  fi
-}
-
-_zpcompinit_custom
+setopt extendedglob local_options
+. /usr/local/opt/asdf/asdf.sh
 
 ###
 # Setup Path
@@ -34,7 +18,7 @@ cdpath=(. $HOME $HOME/projects)
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 HIST_STAMPS="dd.mm.yyyy"
-plugins=(asdf git-open zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search)
+plugins=(git-open zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search)
 source $ZSH/oh-my-zsh.sh
 
 GIT_PROMPT_EXECUTABLE="haskell"
@@ -65,6 +49,8 @@ alias ga='git add'
 alias gp='git pull'
 alias gpu='git push'
 alias gc='git commit'
+alias pro='gh pr view -w'
+alias prs='gh pr status'
 alias git_review='ruby ~/projects/git_review.rb -f day -e tom@discolabs.com -p /Users/tomgamon/projects/'
 alias setup_rubocop='curl -s https://gist.githubusercontent.com/zero51/2411f0fc8cdaaace1e8e4844aea3effc/raw/ > .rubocop.yml'
 alias 999='bx rubocop -a'
@@ -75,20 +61,21 @@ alias rg='rg --no-ignore-messages'
 alias setup_overcommit='curl -s https://gist.githubusercontent.com/zero51/b94b7c2e134de4be9dc9e3966d8708e8/raw/ > .overcommit.yml'
 alias dcr='docker-compose run --rm'
 alias dcra='docker-compose run --rm app'
-alias dcrw='docker-compose run --rm web'
 alias ngrokc='ngrok `< .ngrok-config`'
 alias zc='vim ~/.zshrc'
 alias szc='source ~/.zshrc'
 alias zcl='vim ~/.zsh-local'
 alias vc='vim ~/.vimrc'
-alias note="vim $(date +"~/Dropbox/notes/%d_%m_%Y.md") -c 'cd ~/Dropbox/notes/.'" 
+alias note="vim $(date +"~/Dropbox/notes/journal/%Y_%m_%d.md") -c 'cd ~/Dropbox/notes/.'" 
 alias vim="nvim"
 alias ovim='vim'
-alias fvim='vim $(ls|fzf)'
+alias ff='vim $(fzf)'
 alias fzfp='fzf --preview "(bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -500" --bind "ctrl-e:execute(vim {})"'
 alias fzfp='fzf --preview "cat {} | head -500" --bind "ctrl-e:execute(vim {})"'
 alias todo='todoist --color --indent --header l -f "##Work"'
 alias ssh=color-ssh
+alias lint='bx standardrb --fix $(git files | grep -E ".*(.rb)$")'
+alias spec='bin/rspec $(git files | grep -E ".*(spec.rb)$")'
 
 ###
 # Custom Functions
@@ -129,11 +116,29 @@ color-ssh() {
     'ssh' $*
   }
 
+zet() {
+  local spaced_name
+  spaced_name=$(echo "$@" | tr ' ' '_')
+  vim "$spaced_name".md -c 'cd ~/Dropbox/notes/zettel/.'
+}
+
+add() {
+  local filepath
+  filepath=$(date +"$HOME/Dropbox/notes/journal/%Y_%m_%d.md")
+  echo "\n---" >> $filepath
+  echo "**$@**\n\n" >> $filepath
+  vim $filepath -c 'cd $HOME/Dropbox/notes/.' +
+}
+
+rollover() {
+  cat $(date -v -1d +"$HOME/Dropbox/notes/journal/%Y-%m-%d.md") | rg "\- \[ \]" >> $(date +"$HOME/Dropbox/notes/journal/%Y-%m-%d.md")
+}
+
 ###
 # Prompt
 ###
 
-precmd() { detect-docker; print -rP "$(show-ship)$(git_super_status)" }
+precmd() { print -rP "$(git_super_status)" }
 PROMPT='> %B%2~%b $ '
 
 ###
