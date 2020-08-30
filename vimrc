@@ -544,8 +544,10 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 let NERDTreeMinimalUI=1
 let NERDTreeMinimalMenu=1
+let NERDTreeAutoDeleteBuffer=1
+let NERDTreeQuitOnOpen=1
 
-"Open nerdtree with ctrl+n
+" Open nerdtree with ctrl+n
 map <C-n> :NERDTreeToggle<CR>
 
 nmap - :NERDTreeFind<CR>
