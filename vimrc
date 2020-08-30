@@ -463,6 +463,8 @@ endif
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
+" Theme
+Plug 'morhetz/gruvbox'
 " Adds rails specific functionality
 Plug 'tpope/vim-rails'
 " Git commands
@@ -499,8 +501,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'itspriddle/vim-marked'
 " Autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Theme
-Plug 'morhetz/gruvbox'
 " Show git gutter
 Plug 'mhinz/vim-signify', { 'on':  'SignifyToggle' }
 " Allow shortcuts to use ruby objects
