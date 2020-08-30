@@ -504,8 +504,6 @@ Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'skywind3000/asyncrun.vim'
 
-" Allow shortcuts to run commands in a tmux split pane
-Plug 'benmills/vimux'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
