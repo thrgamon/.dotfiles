@@ -567,6 +567,7 @@ command! -bang -nargs=* Rg
 command! -bang -nargs=* Factories call fzf#vim#files('spec/factories')
 command! -bang -nargs=* Models call fzf#vim#files('app/models')
 command! -bang -nargs=* Specs call fzf#vim#files('spec')
+command! -bang EditedFiles call fzf#run(fzf#wrap({ 'source': 'git diff --name-only `git merge-base origin/master HEAD`'}))
 
 nnoremap <leader>p :Files<Cr>
 nnoremap <leader>b :Buffers<Cr>
