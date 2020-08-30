@@ -24,6 +24,7 @@ export GOPATH=$HOME/go
 PATH=$HOME/bin:/usr/local/bin:$GOROOT/bin:$GOPATH/bin:$HOME/.local/bin:/usr/local/sbin:/miniconda3/bin:$PATH
 setopt auto_cd
 export PATH
+export ERL_AFLAGS="-kernel shell_history enabled"
 cdpath=(. $HOME $HOME/projects)
 
 ###
