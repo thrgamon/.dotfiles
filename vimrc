@@ -473,8 +473,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 " Integration with hub - github cli - :Gbrowse
 Plug 'tpope/vim-rhubarb'
-" Run commands in a variety of ways
-Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-projectionist'
@@ -506,6 +504,7 @@ Plug 'mhinz/vim-signify', { 'on':  'SignifyToggle' }
 " Allow shortcuts to use ruby objects
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'skywind3000/asyncrun.vim'
 
 " Allow shortcuts to run commands in a tmux split pane
 Plug 'benmills/vimux'
@@ -523,7 +522,15 @@ nnoremap <leader>ts :TestSuite<Cr>
 nnoremap <leader>tl :TestLast<Cr>
 nnoremap <leader>tv :TestVisit<Cr>
 
-let test#strategy = "vimux"
+function! AsyncSplit(cmd) abort
+  let g:test#strategy#cmd = a:cmd
+  call test#strategy#asyncrun_setup_unlet_global_autocmd()
+  execute 'AsyncRun -mode=term -pos=bottom -rows=10 -focus=0 -post=echo\ eval("g:asyncrun_code\ ?\"Failure\":\"Success\"").":"'
+          \ .'\ substitute(g:test\#strategy\#cmd,\ "\\",\ "",\ "") '.a:cmd
+endfunction
+
+let g:test#custom_strategies = {'async_split': function('AsyncSplit')}
+let g:test#strategy = 'async_split'
 
 let g:test#ruby#rspec#executable = "bin/rspec" 
 let g:test#javascript#jest#executable = "yarn test" 
@@ -670,6 +677,18 @@ command! -nargs=0 Format :call CocAction('format')"
 """
 
 colorscheme gruvbox
+
+"""
+" AsyncRun
+"""
+
+" Make it cooperate with vim-fugitive
+" https://github.com/skywind3000/asyncrun.vim/wiki/Cooperate-with-famous-plugins#fugitive
+command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+
+augroup vimrc
+    autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
+augroup END
 
 """
 " Keymaps
