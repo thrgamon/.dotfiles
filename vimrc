@@ -493,8 +493,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'janko/vim-test'
 " Visual interface to the undo tree
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-" Status bar
-Plug 'vim-airline/vim-airline'
 " Open the buffer in Marked
 Plug 'itspriddle/vim-marked'
 " Autocompletion
@@ -585,14 +583,6 @@ nnoremap <C-p> :Files<Cr>
 
 let g:gutentags_file_list_command = 'rg --files'
 let g:gutentags_ctags_exclude = ["*.min.js", "*.min.css", "build", "vendor", ".git", "node_modules", "*.vim/bundle/*"]
-
-"""
-" Airline
-"""
-
-let g:airline#extensions#default#layout = [['a', 'c', 'b'], ['x', 'y', 'z', 'warning']]
-let g:airline_section_y = ''
-let g:airline#extensions#branch#displayed_head_limit = 30
 
 
 """
