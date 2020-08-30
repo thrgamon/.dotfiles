@@ -115,6 +115,24 @@ color-ssh() {
     'ssh' $*
   }
 
+zet() {
+  local spaced_name
+  spaced_name=$(echo "$@" | tr ' ' '_')
+  vim "$spaced_name".md -c 'cd ~/Dropbox/notes/zettel/.'
+}
+
+add() {
+  local filepath
+  filepath=$(date +"$HOME/Dropbox/notes/journal/%Y_%m_%d.md")
+  echo "\n---" >> $filepath
+  echo "**$@**\n\n" >> $filepath
+  vim $filepath -c 'cd $HOME/Dropbox/notes/.' +
+}
+
+rollover() {
+  cat $(date -v -1d +"$HOME/Dropbox/notes/journal/%Y-%m-%d.md") | rg "\- \[ \]" >> $(date +"$HOME/Dropbox/notes/journal/%Y-%m-%d.md")
+}
+
 ###
 # Prompt
 ###
