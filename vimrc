@@ -605,6 +605,7 @@ nnoremap <leader>gp :Gpush<Cr>
 " COC
 """
 let g:coc_global_extensions = ['coc-solargraph']
+let g:coc_disable_startup_warning = 1
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
