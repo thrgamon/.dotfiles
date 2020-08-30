@@ -678,3 +678,8 @@ colorscheme gruvbox
 nnoremap <leader>l :Dispatch! bundle exec standardrb --fix % <Cr>
 nnoremap <leader><leader> :VimuxPromptCommand <Cr>
 
+"""
+" AutoCommands
+""" 
+
+autocmd VimEnter * echom(system("shuf -n 1 ~/.dotfiles/pragprog.txt \| tr -d '\n'"))
