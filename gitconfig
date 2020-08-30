@@ -1,6 +1,6 @@
 [user]
 	name = Tom Gamon
-	email = tom@discolabs.com
+	email = tom@tomgamon.com
 [core]
 	editor = nvim
 	excludesfile = ~/.gitignore_global
