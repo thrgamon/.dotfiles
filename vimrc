@@ -498,7 +498,7 @@ Plug 'itspriddle/vim-marked'
 " Autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Show git gutter
-Plug 'mhinz/vim-signify', { 'on':  'SignifyToggle' }
+Plug 'airblade/vim-gitgutter', { 'on':  'GitGutterToggle' }
 " Allow shortcuts to use ruby objects
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
