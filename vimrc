@@ -493,8 +493,8 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 " More generic testing commands for a bunch of languages
 Plug 'janko/vim-test'
-" Visual interface to the undoo tree
-Plug 'mbbill/undotree'
+" Visual interface to the undo tree
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 " Status bar
 Plug 'vim-airline/vim-airline'
 " Open the buffer in Marked
