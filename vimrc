@@ -599,7 +599,6 @@ endfunction
 command! ToggleGstatus :call ToggleGstatus()
 
 nnoremap <leader>gs :ToggleGstatus<Cr>
-nnoremap <leader>gc :Gcommit<Cr>
 nnoremap <leader>gp :Gpush<Cr>
 
 """
