@@ -1,3 +1,5 @@
+setopt extendedglob local_options
+. /usr/local/opt/asdf/asdf.sh
 
 ###
 # Setup Path
