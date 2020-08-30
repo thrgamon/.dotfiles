@@ -577,13 +577,6 @@ nnoremap <leader>ff :Factories<Cr>
 nnoremap <leader>s :Specs<Cr>
 nnoremap <C-p> :Files<Cr>
 
-"""
-" Gutentags
-"""
-
-let g:gutentags_file_list_command = 'rg --files'
-let g:gutentags_ctags_exclude = ["*.min.js", "*.min.css", "build", "vendor", ".git", "node_modules", "*.vim/bundle/*"]
-
 
 """
 " Vim Signify
