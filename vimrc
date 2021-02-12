@@ -474,14 +474,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 " Integration with hub - github cli - :Gbrowse
 Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-rake'
-Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-unimpaired'
 " Select a block and comment it out
 Plug 'tpope/vim-commentary'
 " Adds the end after do, the end after def etc.
 Plug 'tpope/vim-endwise'
+" Convert strings and search and replace
+Plug 'tpope/vim-abolish'
+" Convert strings and search and replace
+Plug 'tpope/vim-bundler'
 " Syntax highlighting for a bunch of languages
 Plug 'sheerun/vim-polyglot'
 " File Explorer
@@ -504,7 +506,7 @@ Plug 'airblade/vim-gitgutter', { 'on':  'GitGutterToggle' }
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'skywind3000/asyncrun.vim'
-
+Plug 'rhysd/git-messenger.vim'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
