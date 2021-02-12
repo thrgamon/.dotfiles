@@ -70,6 +70,10 @@ set shell=zsh
 
 " Remap esc to escape terminal input
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
+" " Enter insert mode when you enter a terminal window
+" autocmd BufWinEnter,WinEnter term://* startinsert
+" " Go to normal mode when you leave a terminal window
+" autocmd BufLeave term://* stopinsert
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
