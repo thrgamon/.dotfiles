@@ -21,9 +21,9 @@ HIST_STAMPS="dd.mm.yyyy"
 plugins=(git-open zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search)
 source $ZSH/oh-my-zsh.sh
 
-GIT_PROMPT_EXECUTABLE="haskell"
-ZSH_THEME_GIT_PROMPT_CACHE=''
-source ~/zsh/zsh-git-prompt/zshrc.sh
+# GIT_PROMPT_EXECUTABLE="haskell"
+# ZSH_THEME_GIT_PROMPT_CACHE=''
+# source ~/zsh/zsh-git-prompt/zshrc.sh
 
 ###
 # Set Environment Variables
@@ -43,7 +43,7 @@ export LANG=en_US.UTF-8
 alias bx='bundle exec'
 alias bi='bundle install'
 alias bu='bundle update'
-alias til='vim ~/Dropbox/notes/today-i-learned.md'
+alias til='nvim ~/Dropbox/notes/today-i-learned.md'
 alias gs='git status -sb'
 alias ga='git add'
 alias gp='git pull'
@@ -62,20 +62,20 @@ alias setup_overcommit='curl -s https://gist.githubusercontent.com/zero51/b94b7c
 alias dcr='docker-compose run --rm'
 alias dcra='docker-compose run --rm app'
 alias ngrokc='ngrok `< .ngrok-config`'
-alias zc='vim ~/.zshrc'
+alias zc='nvim ~/.zshrc'
 alias szc='source ~/.zshrc'
-alias zcl='vim ~/.zsh-local'
-alias vc='vim ~/.vimrc'
-alias note="vim $(date +"~/Dropbox/notes/journal/%Y_%m_%d.md") -c 'cd ~/Dropbox/notes/.'" 
-alias vim="nvim"
-alias ovim='vim'
-alias ff='vim $(fzf)'
-alias fzfp='fzf --preview "(bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -500" --bind "ctrl-e:execute(vim {})"'
-alias fzfp='fzf --preview "cat {} | head -500" --bind "ctrl-e:execute(vim {})"'
-alias todo='todoist --color --indent --header l -f "##Work"'
+alias zcl='nvim ~/.zsh-local'
+alias vc='nvim ~/.vimrc'
+alias note="nvim $(date +"~/Dropbox/notes/journal/%Y-%m-%d.md") -c 'cd ~/Dropbox/notes/.'" 
 alias ssh=color-ssh
 alias lint='bx standardrb --fix $(git files | grep -E ".*(.rb)$")'
 alias spec='bin/rspec $(git files | grep -E ".*(spec.rb)$")'
+alias dump_schema='bundle exec rake graphql:dump_schema'
+alias api='cd /Users/tom.gamon/development/cultureamp/performance-api'
+alias ui='cd /Users/tom.gamon/development/cultureamp/performance-ui'
+alias vim='nvim'
+alias vgf='vim $(git files | fzf)'
+alias vf='vim $(fzf)'
 
 ###
 # Custom Functions
@@ -116,29 +116,32 @@ color-ssh() {
     'ssh' $*
   }
 
-zet() {
-  local spaced_name
-  spaced_name=$(echo "$@" | tr ' ' '_')
-  vim "$spaced_name".md -c 'cd ~/Dropbox/notes/zettel/.'
-}
-
 add() {
   local filepath
-  filepath=$(date +"$HOME/Dropbox/notes/journal/%Y_%m_%d.md")
+  filepath=$(date +"$HOME/Dropbox/notes/journal/%Y-%m-%d.md")
   echo "\n---" >> $filepath
   echo "**$@**\n\n" >> $filepath
-  vim $filepath -c 'cd $HOME/Dropbox/notes/.' +
+  nvim $filepath -c 'cd $HOME/Dropbox/notes/.' +
 }
 
 rollover() {
   cat $(date -v -1d +"$HOME/Dropbox/notes/journal/%Y-%m-%d.md") | rg "\- \[ \]" >> $(date +"$HOME/Dropbox/notes/journal/%Y-%m-%d.md")
+  sed -i .bak 's/\- \[ \]/\- \[\-\]/' $(date -v -1d +"$HOME/Dropbox/notes/journal/%Y-%m-%d.md")
+  find "$HOME/Dropbox/notes/journal/*.bak" -type f -delete &>/dev/null 
+}
+
+extract () {
+  rg $@ --only-matching --no-filename --no-line-number | awk NF
+}
+
+gho () {
+  pro || git open
 }
 
 ###
 # Prompt
 ###
 
-precmd() { print -rP "$(git_super_status)" }
 PROMPT='> %B%2~%b $ '
 
 ###
@@ -146,11 +149,11 @@ PROMPT='> %B%2~%b $ '
 ###
 
 # Iterm 2 Shell Integration
-export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=1
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=1
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Bring in tmuxinator
-source ~/zsh/tmuxinator.zsh
+# source ~/zsh/tmuxinator.zsh
 
 # Set fzf command to use rg
 export FZF_DEFAULT_COMMAND='rg --files --smart-case --hidden --no-ignore-vcs'
@@ -162,3 +165,5 @@ export FZF_DEFAULT_COMMAND='rg --files --smart-case --hidden --no-ignore-vcs'
 # Bring in any local configuration
 ###
 source $HOME/.zsh-local
+
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
