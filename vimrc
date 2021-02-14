@@ -810,6 +810,7 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 " AutoCommands
 """ 
 autocmd VimEnter * echom(system("shuf -n 1 ~/.dotfiles/pragprog.txt \| tr -d '\n'"))
+autocmd FileType markdown map <buffer> <C-G> ...
 
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 vnoremap <leader>wt 
